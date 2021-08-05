@@ -1,0 +1,3 @@
+include ':socketserver'
+include ':socketclient'
+rootProject.name = "socketToy"
