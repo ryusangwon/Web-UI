@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
@@ -16,6 +17,7 @@ import java.net.Socket;
 public class socketService extends Service {
 
     private static final String TAG = "[SOCKET] Server Thread";
+    public static Button input_button;
 
     @Override
     public void onCreate() {
@@ -60,14 +62,9 @@ public class socketService extends Service {
                     Socket socket = server.accept();
                     Log.d(TAG, "run: server accept!");
 
-                    ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-                    Object input = inputStream.readObject();
-                    Log.d(TAG,"input : "+input);
-
                     ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                    outputStream.writeObject(input + "from server");
+                    outputStream.writeObject("Data from server");
                     outputStream.flush();
-                    Log.d(TAG,"output 보냄");
 
                     socket.close();
                 }

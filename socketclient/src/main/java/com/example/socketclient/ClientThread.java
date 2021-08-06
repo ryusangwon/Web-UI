@@ -30,12 +30,8 @@ public class ClientThread extends  Thread {
             SocketAddress socketAddress = new InetSocketAddress(target, port);
             Log.d(TAG, "run: connect socket");
             socket.connect(socketAddress, port);
-
             Log.d(TAG, "run: make Socket");
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            outputStream.writeObject(View.OnClickListener.class);
-            outputStream.flush();
-            Log.d(TAG, "run: go to server");
+
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             final String input = (String) inputStream.readObject();
             Log.d(TAG, "run: received data: " + input);
