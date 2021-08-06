@@ -5,19 +5,22 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class socketService extends Service {
+public class socketService extends Service implements View.OnClickListener {
 
     private static final String TAG = "[SOCKET] Server Thread";
-    public static Button input_button;
+    public TextView send;
 
     @Override
     public void onCreate() {
@@ -49,6 +52,22 @@ public class socketService extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.Change:
+                Log.d(TAG, "onClick: Change");
+
+                break;
+
+            case R.id.send:
+                Log.d(TAG, "onClick: Send");
+
+                break;
+        }
+
+    }
+
     class ServerThread extends Thread{
         @Override
         public void run() {
@@ -60,10 +79,10 @@ public class socketService extends Service {
                 while(true){
                     Log.d(TAG, "run: server accept?");
                     Socket socket = server.accept();
-                    Log.d(TAG, "run: server accept!");
+                    Log.d(TAG, "run: server accept, send Object");
 
                     ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                    outputStream.writeObject("Data from server");
+                    outputStream.writeObject("Hello");
                     outputStream.flush();
 
                     socket.close();
@@ -75,4 +94,5 @@ public class socketService extends Service {
 
         }
     }
+
 }

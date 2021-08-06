@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/Stop"
+        android:id="@+id/stop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -47,4 +47,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/send"
         app:layout_constraintEnd_toStartOf="@+id/send"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Change Color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/send" />
 </androidx.constraintlayout.widget.ConstraintLayout>
