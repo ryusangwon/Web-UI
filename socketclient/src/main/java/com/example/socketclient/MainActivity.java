@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -16,7 +18,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.UnknownHostException;
 
-public class MainActivity extends AppCompatActivity implements Serializable {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "[SOCKET] Client MainActivity";
 
     @Override
@@ -25,19 +27,22 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button:
                 Log.d(TAG, "onClick: Thread before");
                 ClientThread thread = new ClientThread();
                 thread.start();
                 Log.d(TAG, "onClick: Thread after");
-            }
-        });
+                break;
+        }
+
     }
 
     public class ClientThread extends Thread {
-
         private static final String TAG = "[SOCKET] Client Thread";
 
         Handler handler;

@@ -82,7 +82,7 @@ public class socketService extends Service implements View.OnClickListener {
                     Log.d(TAG, "run: server accept, send Object");
 
                     ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                    outputStream.writeObject("Hello");
+                    outputStream.writeObject("Connect with ObjectStream");
                     outputStream.flush();
 
                     socket.close();
