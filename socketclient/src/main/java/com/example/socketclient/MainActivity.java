@@ -8,11 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -21,11 +19,14 @@ import java.net.UnknownHostException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "[SOCKET] Client MainActivity";
 
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
+        textView = (TextView) findViewById(R.id.textView);
 
     }
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public class ClientThread extends Thread {
         private static final String TAG = "[SOCKET] Client Thread";
 
-        Handler handler;
+        Handler handler = new Handler();
         int num;
 
         @Override
@@ -64,6 +65,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 String send = (String) inputStream.readObject();
+                String hi = send.toString();
+
+                int ran = (int)(Math.random() * 10 + 1);
+                for (int i = 0; i < ran; i++){
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d(TAG, "run: setText");
+                            textView.setText(textView.getText().toString() + " Client " + ran);
+
+                        }
+                    });
+                    try{
+                        Thread.sleep(1000);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
                 Log.d(TAG, "run: received data: " + send);
 
 
@@ -74,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d(TAG, "run: IO exception");
                 e.printStackTrace();
             } catch (Exception e){
-                Log.d(TAG, "run: Other exception");
-                e.printStackTrace();
+                Log.d(TAG, "run: Other exception: " + e.getMessage());
             }
         }
     }

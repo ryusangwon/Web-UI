@@ -1,6 +1,7 @@
 package com.example.socketserver;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -17,16 +18,16 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class socketService extends Service implements View.OnClickListener {
+public class socketService extends Service {
 
     private static final String TAG = "[SOCKET] Server Thread";
-    public TextView send;
 
     @Override
     public void onCreate() {
-        
+
         Log.d(TAG, "onCreate: ");
         super.onCreate();
+
         ServerThread thread = new ServerThread();
         Log.d(TAG, "onCreate: make server thread");
         thread.start();
@@ -52,22 +53,6 @@ public class socketService extends Service implements View.OnClickListener {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.Change:
-                Log.d(TAG, "onClick: Change");
-
-                break;
-
-            case R.id.send:
-                Log.d(TAG, "onClick: Send");
-
-                break;
-        }
-
-    }
-
     class ServerThread extends Thread{
         @Override
         public void run() {
@@ -82,8 +67,9 @@ public class socketService extends Service implements View.OnClickListener {
                     Log.d(TAG, "run: server accept, send Object");
 
                     ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                    outputStream.writeObject("Connect with ObjectStream");
+                    outputStream.writeObject("From Server");
                     outputStream.flush();
+
 
                     socket.close();
                 }
