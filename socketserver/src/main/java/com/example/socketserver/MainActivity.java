@@ -3,6 +3,7 @@ package com.example.socketserver;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.util.Output;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -94,7 +95,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
-
 
 }
