@@ -12,6 +12,7 @@ import android.widget.Button;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -73,11 +74,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Socket socket = server.accept();
                     Log.d(TAG, "run: server accept!");
 
-                    ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                    outputStream.writeObject("Hello");
+                    OutputStream os = socket.getOutputStream();
+                    ObjectOutputStream oos = new ObjectOutputStream(os);
+                    oos.writeObject("Hello");
                     Log.d(TAG, "run: send Object");
 
-                    outputStream.flush();
+                    oos.flush();
 
                     socket.close();
                 }

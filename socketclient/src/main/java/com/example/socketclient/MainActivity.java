@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -63,8 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 socket.connect(socketAddress, port);
                 Log.d(TAG, "run: make Socket");
 
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-                String send = (String) inputStream.readObject();
+                InputStream is = socket.getInputStream();
+                ObjectInputStream ois = new ObjectInputStream(is);
+                String send = (String) ois.readObject();
                 String hi = send.toString();
 
                 int ran = (int)(Math.random() * 10 + 1);
