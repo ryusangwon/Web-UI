@@ -32,7 +32,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socketclient/src/main/java/com/example/socketclient/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketclient/src/main/java/com/example/socketclient/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketserver/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/socketService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,27 +348,35 @@
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state x="3653" y="435" key="#com.intellij.ide.util.MemberChooser/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628240983348" />
+    <state x="3593" y="410" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628403712959">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state x="3593" y="410" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628403712959" />
     <state x="3628" y="484" key="FileChooserDialogImpl" timestamp="1628251069928">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state x="1068" y="484" key="FileChooserDialogImpl/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628237152295" />
     <state x="3628" y="484" key="FileChooserDialogImpl/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628251069928" />
-    <state width="1690" height="221" key="GridCell.Tab.0.bottom" timestamp="1628250244391">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1765" height="221" key="GridCell.Tab.0.bottom" timestamp="1628403713075">
+      <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1690" height="221" key="GridCell.Tab.0.bottom/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628250244391" />
-    <state width="1690" height="221" key="GridCell.Tab.0.center" timestamp="1628250244390">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1765" height="221" key="GridCell.Tab.0.bottom/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628403713075" />
+    <state width="1765" height="221" key="GridCell.Tab.0.center" timestamp="1628403713074">
+      <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1690" height="221" key="GridCell.Tab.0.center/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628250244390" />
-    <state width="1690" height="221" key="GridCell.Tab.0.left" timestamp="1628250244390">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1765" height="221" key="GridCell.Tab.0.center/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628403713074" />
+    <state width="1765" height="221" key="GridCell.Tab.0.left" timestamp="1628403713074">
+      <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1690" height="221" key="GridCell.Tab.0.left/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628250244390" />
-    <state width="1690" height="221" key="GridCell.Tab.0.right" timestamp="1628250244390">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="1765" height="221" key="GridCell.Tab.0.left/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628403713074" />
+    <state width="1765" height="221" key="GridCell.Tab.0.right" timestamp="1628403713075">
+      <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1690" height="221" key="GridCell.Tab.0.right/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628250244390" />
+    <state width="1765" height="221" key="GridCell.Tab.0.right/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628403713075" />
     <state x="3075" y="506" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1628228355366">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>

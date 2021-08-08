@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,7 +23,8 @@ import java.net.UnknownHostException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "[SOCKET] Server MainActivity";
-    Button start, stop;
+    Button start, stop, send;
+    TextView sendText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         start = (Button) findViewById(R.id.start);
         stop = (Button) findViewById(R.id.stop);
+        send = (Button) findViewById(R.id.send);
+        sendText = (TextView) findViewById(R.id.sendText);
+
     }
 
 
@@ -39,19 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.start:
-                //Log.d(TAG, "onClick: Service Start Button");
-                //Intent intent = new Intent(this, socketService.class);
-                //startService(intent);
-                //Log.d(TAG, "onCreate: start service");
-
                 ServerThread thread = new ServerThread();
                 thread.start();
                 Log.d(TAG, "onClick: ");
                 break;
 
             case R.id.stop:
-                //Log.d(TAG, "onClick: Service Stop Button");
-                //stopService(new Intent(this, socketService.class));
                 break;
         }
     }
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     OutputStream os = socket.getOutputStream();
                     ObjectOutputStream oos = new ObjectOutputStream(os);
-                    oos.writeObject("Hello");
+                    oos.writeObject(sendText);
                     Log.d(TAG, "run: send Object");
 
                     oos.flush();

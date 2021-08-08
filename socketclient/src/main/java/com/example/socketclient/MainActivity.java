@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 InputStream is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
-                String send = (String) ois.readObject();
-                String hi = send.toString();
+                TextView send = (TextView) ois.readObject();
 
+                /*
                 int ran = (int)(Math.random() * 10 + 1);
                 for (int i = 0; i < ran; i++){
                     handler.post(new Runnable() {
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                 }
+                 */
 
                 Log.d(TAG, "run: received data: " + send);
 
