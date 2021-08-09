@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 InputStream is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
-                TextView send = (TextView) ois.readObject();
+                //TextView send = (TextView) ois.readObject();
+                String send = (String) ois.readObject();
 
                 /*
                 int ran = (int)(Math.random() * 10 + 1);

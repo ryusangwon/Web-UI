@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     OutputStream os = socket.getOutputStream();
                     ObjectOutputStream oos = new ObjectOutputStream(os);
-                    oos.writeObject(sendText);
+                    oos.writeObject("sendText");
                     Log.d(TAG, "run: send Object");
 
                     oos.flush();
