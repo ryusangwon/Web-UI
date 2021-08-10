@@ -2,23 +2,20 @@ package com.example.socketserver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.icu.util.Output;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.UnknownHostException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,8 +23,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "[SOCKET] Server MainActivity";
     Button start, stop, send;
     TextView sendText;
+    EditText writeText;
     String data = "";
 
+    ServerThread thread = new ServerThread();
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
@@ -36,8 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         start = (Button) findViewById(R.id.start);
         stop = (Button) findViewById(R.id.stop);
-        send = (Button) findViewById(R.id.send);
+        send = (Button) findViewById(R.id.set);
         sendText = (TextView) findViewById(R.id.sendText);
+        writeText = (EditText) findViewById(R.id.inputText);
+
+
 
     }
 
@@ -46,13 +50,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.start:
-                ServerThread thread = new ServerThread();
                 thread.start();
                 Log.d(TAG, "onClick: ");
                 break;
 
             case R.id.stop:
+                thread.interrupt();
                 break;
+
+            case R.id.set:
+                String textTemp = writeText.getText().toString();
+                sendText.setText(textTemp);
+                break;
+
+            case R.id.Change:
+                
         }
     }
 
@@ -74,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Socket socket = server.accept();
                     Log.d(TAG, "run: server accept!");
 
+                    data = "";
                     data += sendText.getText();
 
                     OutputStream os = socket.getOutputStream();
@@ -81,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     oos.writeObject(data);
                     Log.d(TAG, "run: send Object");
-
                     oos.flush();
 
                     socket.close();

@@ -2,11 +2,15 @@ package com.example.socketclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -17,6 +21,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "[SOCKET] Client MainActivity";
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onCreate: ");
 
 
+
     }
 
     @Override
@@ -43,6 +49,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d(TAG, "onClick: Thread after");
                 break;
         }
+    }
+
+    public void newLayout(String data){
+        LinearLayout linear = new LinearLayout(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        linear.setLayoutParams(params);
+        linear.setOrientation(LinearLayout.VERTICAL);
+
+        TextView newText = new TextView(this);
+        Button newButton = new Button(this);
+
+        newText.setText(data);
+        newButton.setText("Press Button to Change Color");
+        linear.addView(newText);
+        linear.addView(newButton);
+
+        setContentView(linear);
+
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random random = new Random();
+                int red = random.nextInt(255);
+                int green = random.nextInt(255);
+                int blue = random.nextInt(255);
+                newText.setTextColor(Color.rgb(red, green, blue));
+            }
+        });
+    }
+
+    public void newLayout(int a){
 
     }
 
@@ -76,9 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         try {
-                            Changetext = (TextView) findViewById(R.id.textView);
-                            Changetext.setText("");
-                            Changetext.setText(finalData);
+                            newLayout(finalData);
                             Log.d(TAG, "setText: data");
                         } catch (Exception e){
                             Log.d(TAG, "error: " + e);
@@ -86,26 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
-
-
-                /*
-                int ran = (int)(Math.random() * 10 + 1);
-                for (int i = 0; i < ran; i++){
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d(TAG, "run: setText");
-                            textView.setText(textView.getText().toString() + " Client " + ran);
-
-                        }
-                    });
-                    try{
-                        Thread.sleep(1000);
-                    } catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-                 */
 
             } catch (UnknownHostException e){
                 Log.d(TAG, "run: unknown host exception");
