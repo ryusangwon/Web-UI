@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "[SOCKET] Server MainActivity";
     Button start, stop, send;
     TextView sendText;
+    String data = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +74,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Socket socket = server.accept();
                     Log.d(TAG, "run: server accept!");
 
+                    data += sendText.getText();
+
                     OutputStream os = socket.getOutputStream();
                     ObjectOutputStream oos = new ObjectOutputStream(os);
-                    oos.writeObject("sendText");
+
+                    oos.writeObject(data);
                     Log.d(TAG, "run: send Object");
 
                     oos.flush();

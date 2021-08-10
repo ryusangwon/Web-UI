@@ -36,7 +36,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socketclient/src/main/java/com/example/socketclient/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketclient/src/main/java/com/example/socketclient/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketclient/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/socketclient/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +74,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="12191FDD40010L" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-09T06:26:43.753Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-10T06:46:09.768Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />

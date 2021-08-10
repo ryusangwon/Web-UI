@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -20,14 +21,15 @@ import java.net.UnknownHostException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "[SOCKET] Client MainActivity";
 
-    TextView textView;
+    TextView Changetext;
+    Button ChangeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
-        textView = (TextView) findViewById(R.id.textView);
+
 
     }
 
@@ -66,8 +68,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 InputStream is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
-                //TextView send = (TextView) ois.readObject();
-                String send = (String) ois.readObject();
+                String data = (String) ois.readObject();
+                String finalData = data;
+                Log.d(TAG, "run: " + data);
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Changetext = (TextView) findViewById(R.id.textView);
+                            Changetext.setText("");
+                            Changetext.setText(finalData);
+                            Log.d(TAG, "setText: data");
+                        } catch (Exception e){
+                            Log.d(TAG, "error: " + e);
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
 
                 /*
                 int ran = (int)(Math.random() * 10 + 1);
@@ -87,9 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                  */
-
-                Log.d(TAG, "run: received data: " + send);
-
 
             } catch (UnknownHostException e){
                 Log.d(TAG, "run: unknown host exception");
