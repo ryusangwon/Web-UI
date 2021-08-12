@@ -109,7 +109,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ObjectInputStream ois = new ObjectInputStream(is);
                 String data = (String) ois.readObject();
                 String finalData = data;
-                Log.d(TAG, "run: " + data);
+                String event = (String) ois.readObject();
+                String finalEvent = event;
+                Log.d(TAG, "run: data: " + data);
+
+                Log.d(TAG, "run: event: " + finalEvent);
 
                 handler.post(new Runnable() {
                     @Override

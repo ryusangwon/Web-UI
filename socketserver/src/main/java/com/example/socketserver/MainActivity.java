@@ -3,6 +3,7 @@ package com.example.socketserver;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.icu.util.Output;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -41,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sendText = (TextView) findViewById(R.id.sendText);
         writeText = (EditText) findViewById(R.id.inputText);
 
-
-
     }
 
 
@@ -63,16 +62,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sendText.setText(textTemp);
                 break;
 
-            case R.id.Change:
-                
         }
     }
 
     public class ServerThread extends Thread {
         private static final String TAG = "[SOCKET] Server MainActivity Thread";
 
-        Handler handler;
-        int num;
+        String event;
 
         @Override
         public void run() {
@@ -86,6 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Socket socket = server.accept();
                     Log.d(TAG, "run: server accept!");
 
+                    Button change = (Button) findViewById(R.id.Change);
+                    change.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View view) {
+                            Log.d(TAG, "onClick: set event");
+                            event = "Button";
+
+                        }
+                    });
+
                     data = "";
                     data += sendText.getText();
 
@@ -93,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ObjectOutputStream oos = new ObjectOutputStream(os);
 
                     oos.writeObject(data);
+                    oos.writeObject(event);
                     Log.d(TAG, "run: send Object");
                     oos.flush();
 
