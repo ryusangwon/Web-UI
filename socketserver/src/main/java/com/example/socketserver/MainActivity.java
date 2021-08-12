@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     oos.writeObject(data);
                     oos.writeObject(event);
+
                     Log.d(TAG, "run: send Object");
                     oos.flush();
 

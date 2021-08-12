@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView Changetext;
     Button ChangeButton;
+    Button newButton;
+    TextView newText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
-
-
 
     }
 
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linear.setLayoutParams(params);
         linear.setOrientation(LinearLayout.VERTICAL);
 
-        TextView newText = new TextView(this);
-        Button newButton = new Button(this);
+        newText = new TextView(this);
+        newButton = new Button(this);
 
         newText.setText(data);
         newButton.setText("Press Button to Change Color");
@@ -79,10 +79,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 newText.setTextColor(Color.rgb(red, green, blue));
             }
         });
+
     }
 
     public void newLayout(int a){
 
+    }
+
+    public void newEvent(String event){
+        if (event.equals("Button")){
+            Random random = new Random();
+            int red = random.nextInt(255);
+            int green = random.nextInt(255);
+            int blue = random.nextInt(255);
+            newText.setTextColor(Color.rgb(red, green, blue));
+        }
     }
 
     public class ClientThread extends Thread {
@@ -111,7 +122,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String finalData = data;
                 String event = (String) ois.readObject();
                 String finalEvent = event;
-                Log.d(TAG, "run: data: " + data);
+
+                Log.d(TAG, "run: data: " + finalData);
                 Log.d(TAG, "run: event: " + finalEvent);
 
                 handler.post(new Runnable() {
@@ -119,7 +131,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         try {
                             newLayout(finalData);
-                            Log.d(TAG, "setText: ");
+                            for (int i = 0; i < 10; i++){
+                                newEvent(finalEvent);
+                            }
+                            Log.d(TAG, "run: new layout");
+
                         } catch (Exception e){
                             Log.d(TAG, "error: " + e);
                             e.printStackTrace();

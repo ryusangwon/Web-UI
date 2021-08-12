@@ -45,7 +45,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[12191FDD40010L]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[99011FFBA000PK]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -72,14 +72,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="12191FDD40010L" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-12T03:47:44.525Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="99011FFBA000PK" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-12T04:46:23.827Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../name" />
   </component>
-  <component name="RunManager" selected="Android App.socketserver">
+  <component name="RunManager" selected="Android App.socketclient">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
