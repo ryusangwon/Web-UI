@@ -75,6 +75,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d(TAG, "run: ");
             int port = 5672;
             try {
+
+                Button change = (Button) findViewById(R.id.Change);
+                change.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Log.d(TAG, "onClick: set event");
+                        event = "Button";
+
+                    }
+                });
+
                 ServerSocket server = new ServerSocket(port);
 
                 while(true){
@@ -82,15 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Socket socket = server.accept();
                     Log.d(TAG, "run: server accept!");
 
-                    Button change = (Button) findViewById(R.id.Change);
-                    change.setOnClickListener(new View.OnClickListener(){
-                        @Override
-                        public void onClick(View view) {
-                            Log.d(TAG, "onClick: set event");
-                            event = "Button";
-
-                        }
-                    });
 
                     data = "";
                     data += sendText.getText();

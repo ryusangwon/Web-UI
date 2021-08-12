@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String event = (String) ois.readObject();
                 String finalEvent = event;
                 Log.d(TAG, "run: data: " + data);
-
                 Log.d(TAG, "run: event: " + finalEvent);
 
                 handler.post(new Runnable() {
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         try {
                             newLayout(finalData);
-                            Log.d(TAG, "setText: data");
+                            Log.d(TAG, "setText: ");
                         } catch (Exception e){
                             Log.d(TAG, "error: " + e);
                             e.printStackTrace();
