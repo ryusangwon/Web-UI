@@ -17,8 +17,6 @@ public class MyService extends Service {
 
     private static final String TAG = "[SOCKET] Service";
 
-    IServiceInterface mServiceInterface;
-
     public Binder mBinder = new IServiceInterface.Stub() {
         @Override
         public void serviceThreadStart() throws RemoteException {
@@ -27,6 +25,7 @@ public class MyService extends Service {
             serverThread.start();
         }
     };
+
 
     @Override
     public void onCreate() {
@@ -52,7 +51,7 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind: ");
-        return mBinder;
+        return (IBinder) mBinder;
     }
     
     class ServerThread extends Thread{

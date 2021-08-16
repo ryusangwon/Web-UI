@@ -20,19 +20,34 @@ public class MainActivity extends AppCompatActivity {
 
     IServiceInterface myService;
 
+    final ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d(TAG, "onServiceConnected: Service Connected?");
+            myService = IServiceInterface.Stub.asInterface(service);
+            Log.d(TAG, "onServiceConnected: Service Connected!");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.d(TAG, "onServiceDisconnected: ");
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        Intent intent = new Intent("com.example.socketService.MyService.aidl");
+        Intent intent = new Intent("com.example.socketservice.MY_SERVICE");
         intent.setPackage("com.example.socketService");
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        getApplicationContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         Log.d(TAG, "onCreate: Bind Service");
-        
+
         try {
+            Log.d(TAG, "onCreate: Start Service from Server?");
             myService.serviceThreadStart();
             Log.d(TAG, "onCreate: Service Start");
         } catch (RemoteException e) {
@@ -41,21 +56,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-
-    final ServiceConnection mConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            myService = IServiceInterface.Stub.asInterface(service);
-            Log.d(TAG, "onServiceConnected: ");
-
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
 
     @Override
     protected void onDestroy() {
