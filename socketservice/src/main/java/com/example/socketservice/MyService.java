@@ -7,9 +7,11 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class MyService extends Service {
 
@@ -76,6 +78,12 @@ public class MyService extends Service {
                     socket.close();                    
                 }
                 
+            } catch (UnknownHostException e){
+                Log.d(TAG, "run: unknown host exception");
+                e.printStackTrace();
+            } catch (IOException e) {
+                Log.d(TAG, "run: IO exception");
+                e.printStackTrace();
             } catch (Exception e){
                 e.printStackTrace();
             }

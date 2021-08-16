@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d(TAG, "onCreate: ");
         start = (Button) findViewById(R.id.start);
         stop = (Button) findViewById(R.id.stop);
         send = (Button) findViewById(R.id.set);
