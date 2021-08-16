@@ -21,8 +21,10 @@ public class MyService extends Service {
 
     public Binder mBinder = new IServiceInterface.Stub() {
         @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
+        public void serviceThreadStart() throws RemoteException {
+            Log.d(TAG, "serviceThreadStart: ");
+            ServerThread serverThread = new ServerThread();
+            serverThread.start();
         }
     };
 
@@ -30,10 +32,6 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate: ");
-        
-        ServerThread serverThread = new ServerThread();
-        serverThread.start();
-        
     }
 
     @Override

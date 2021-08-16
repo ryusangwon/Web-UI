@@ -37,6 +37,8 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../socketserver/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../socketserver/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../socketserver/build/generated/res/resValues/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../socketserver/src/main/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../socketserver/build/generated/aidl_source_output_dir/debug/out" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../socketserver/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../socketserver/build" />
     </content>
