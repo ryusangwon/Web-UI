@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/Web-UI.iml" filepath="$PROJECT_DIR$/.idea/Web-UI.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/socketclient/Web-UI.socketclient.iml" filepath="$PROJECT_DIR$/.idea/modules/socketclient/Web-UI.socketclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/socketserver/Web-UI.socketserver.iml" filepath="$PROJECT_DIR$/.idea/modules/socketserver/Web-UI.socketserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/socketservice/Web-UI.socketservice.iml" filepath="$PROJECT_DIR$/.idea/modules/socketservice/Web-UI.socketservice.iml" />
     </modules>
   </component>
 </project>

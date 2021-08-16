@@ -1,3 +1,4 @@
+include ':socketservice'
 include ':socketserver'
 include ':socketclient'
 rootProject.name = "Web-UI"
