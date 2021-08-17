@@ -51,7 +51,7 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind: ");
-        return (IBinder) mBinder;
+        return mBinder;
     }
     
     class ServerThread extends Thread{

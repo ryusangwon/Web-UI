@@ -5,4 +5,5 @@ package com.example.socketservice;
 
 interface IServiceInterface {
     void serviceThreadStart();
+
 }

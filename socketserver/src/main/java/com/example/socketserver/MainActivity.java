@@ -10,11 +10,12 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.view.View;
 
 import com.example.socketservice.IServiceInterface;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "[SOCKET] Server";
 
@@ -39,26 +40,34 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent("com.example.socketservice.MY_SERVICE");
-        intent.setPackage("com.example.socketService");
-        getApplicationContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-        //bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-        Log.d(TAG, "onCreate: Bind Service");
-
-        try {
-            Log.d(TAG, "onCreate: Start Service from Server?");
-            myService.serviceThreadStart();
-            Log.d(TAG, "onCreate: Service Start");
-        } catch (RemoteException e) {
-            Log.d(TAG, "onCreate: Service Error");
-            e.printStackTrace();
-        }
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_Bind:
+                Intent intent = new Intent("com.example.socketservice.MY_SERVICE");
+                intent.setPackage("com.example.socketservice");
+                //getApplicationContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+                bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+                Log.d(TAG, "onCreate: Bind Service");
+
+                break;
+            case R.id.button:
+                try {
+                    Log.d(TAG, "onCreate: Start Service from Server?");
+                    myService.serviceThreadStart();
+                    Log.d(TAG, "onCreate: Service Start");
+                } catch (RemoteException e) {
+                    Log.d(TAG, "onCreate: Service Error");
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 }
