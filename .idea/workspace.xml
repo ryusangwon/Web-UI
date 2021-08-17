@@ -33,25 +33,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socketserver/src/main/aidl/com/example/socketservice/IServiceInterface.aidl" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/src/main/aidl/com/example/socketservice/IServiceInterface.aidl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/src/main/java/com/example/socketserver/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socketserver/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socketservice/src/main/aidl/com/example/socketservice/IServiceInterface.aidl" beforeDir="false" afterPath="$PROJECT_DIR$/socketservice/src/main/aidl/com/example/socketservice/IServiceInterface.aidl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socketservice/src/main/java/com/example/socketservice/MyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketservice/src/main/java/com/example/socketservice/MyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketclient/src/main/java/com/example/socketclient/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/socketclient/src/main/java/com/example/socketclient/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[99011FFBA000PK]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -81,14 +74,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="99011FFBA000PK" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-16T05:57:58.249Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="12191FDD40010L" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-17T04:37:33.174Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MPlus" />
   </component>
-  <component name="RunManager" selected="Android App.socketserver">
+  <component name="RunManager" selected="Android App.socketclient">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -489,26 +482,26 @@
     </state>
     <state x="1068" y="484" key="FileChooserDialogImpl/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628237152295" />
     <state x="3628" y="484" key="FileChooserDialogImpl/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629086336392" />
-    <state width="1765" height="228" key="GridCell.Tab.0.bottom" timestamp="1629171876130">
+    <state width="1765" height="228" key="GridCell.Tab.0.bottom" timestamp="1629173639904">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1765" height="275" key="GridCell.Tab.0.bottom/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628596501448" />
-    <state width="1765" height="228" key="GridCell.Tab.0.bottom/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629171876130" />
-    <state width="1765" height="228" key="GridCell.Tab.0.center" timestamp="1629171876130">
+    <state width="1765" height="228" key="GridCell.Tab.0.bottom/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629173639904" />
+    <state width="1765" height="228" key="GridCell.Tab.0.center" timestamp="1629173639904">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1765" height="275" key="GridCell.Tab.0.center/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628596501448" />
-    <state width="1765" height="228" key="GridCell.Tab.0.center/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629171876130" />
-    <state width="1765" height="228" key="GridCell.Tab.0.left" timestamp="1629171876129">
+    <state width="1765" height="228" key="GridCell.Tab.0.center/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629173639904" />
+    <state width="1765" height="228" key="GridCell.Tab.0.left" timestamp="1629173639904">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1765" height="275" key="GridCell.Tab.0.left/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628596501448" />
-    <state width="1765" height="228" key="GridCell.Tab.0.left/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629171876129" />
-    <state width="1765" height="228" key="GridCell.Tab.0.right" timestamp="1629171876130">
+    <state width="1765" height="228" key="GridCell.Tab.0.left/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629173639904" />
+    <state width="1765" height="228" key="GridCell.Tab.0.right" timestamp="1629173639904">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state width="1765" height="275" key="GridCell.Tab.0.right/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1628596501448" />
-    <state width="1765" height="228" key="GridCell.Tab.0.right/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629171876130" />
+    <state width="1765" height="228" key="GridCell.Tab.0.right/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1629173639904" />
     <state x="3075" y="506" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1628228355366">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>

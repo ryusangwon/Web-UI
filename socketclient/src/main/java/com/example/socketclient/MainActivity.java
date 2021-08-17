@@ -24,7 +24,7 @@ import java.net.UnknownHostException;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "[SOCKET] Client MainActivity";
+    private static final String TAG = "[SOCKET] Client";
 
     TextView Changetext;
     Button ChangeButton;
@@ -81,10 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void newLayout(int a){
-
-    }
-
     public void newEvent(String event){
         if (event.equals("Button")){
             Random random = new Random();
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void run() {
-            String target = "192.168.0.22";
+            String target = "192.168.0.21";
             int port = 5672;
 
             try{
@@ -119,20 +115,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ObjectInputStream ois = new ObjectInputStream(is);
                 String data = (String) ois.readObject();
                 String finalData = data;
-                String event = (String) ois.readObject();
-                String finalEvent = event;
-
                 Log.d(TAG, "run: data: " + finalData);
-                Log.d(TAG, "run: event: " + finalEvent);
 
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             newLayout(finalData);
-                            for (int i = 0; i < 10; i++){
-                                newEvent(finalEvent);
-                            }
                             Log.d(TAG, "run: new layout");
 
                         } catch (Exception e){
