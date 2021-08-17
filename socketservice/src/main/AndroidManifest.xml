@@ -15,11 +15,11 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true">
-        <intent-filter>
-            <action android:name="com.example.socketservice.MY_SERVICE"/>
+            <intent-filter>
+                <action android:name="com.example.socketservice.MY_SERVICE"/>
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
         </service>
 
