@@ -29,15 +29,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a9f49f7-e5c0-4f16-b2cf-43c262545948" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socketservice/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/socketservice/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketclient/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/socketclient/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketserver/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/socketserver/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socketservice/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/socketservice/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[99011FFBA000PK]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[12191FDD40010L]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -73,6 +75,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MPlus" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Android App.socketclient">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -462,6 +467,10 @@
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
     <state x="3493" y="321" width="800" height="695" key="#Intentions/2560.0.2560.1440/0.0.2560.1440@2560.0.2560.1440" timestamp="1628580268333" />
+    <state x="818" y="402" key="#PSD" timestamp="1629269704474">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="818" y="402" key="#PSD/2560.0.2560.1440/0.0.2560.1440@0.0.2560.1440" timestamp="1629269704474" />
     <state x="3557" y="401" key="#com.intellij.ide.util.MemberChooser" timestamp="1629172713804">
       <screen x="2560" y="0" width="2560" height="1440" />
     </state>
