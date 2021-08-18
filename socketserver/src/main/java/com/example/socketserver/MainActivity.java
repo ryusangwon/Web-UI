@@ -20,12 +20,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "[SOCKET] Server";
 
     IServiceInterface myService;
+    boolean isbind =false;
 
     final ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.d(TAG, "onServiceConnected: Service Connected?");
             myService = IServiceInterface.Stub.asInterface(service);
+            isbind = true;
             Log.d(TAG, "onServiceConnected: Service Connected!");
         }
 
@@ -56,13 +58,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //getApplicationContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
                 bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
                 Log.d(TAG, "onCreate: Bind Service");
-
                 break;
-            case R.id.button:
+
+            case R.id.btn_sSocket:
                 try {
-                    Log.d(TAG, "onCreate: Start Service from Server?");
-                    myService.serviceThreadStart();
-                    Log.d(TAG, "onCreate: Service Start");
+                    if (isbind == true){
+                        Log.d(TAG, "onCreate: Start Service from Server?");
+                        myService.serviceThreadStart();
+                        myService.setMessage(findViewById(R.id.edit_message).getContext().toString());
+                        Log.d(TAG, "onClick: Set Text");
+
+                        Log.d(TAG, "onCreate: Service Start");
+                    } else{
+                        Log.d(TAG, "onClick: Not Binded");
+                    }
+
                 } catch (RemoteException e) {
                     Log.d(TAG, "onCreate: Service Error");
                     e.printStackTrace();

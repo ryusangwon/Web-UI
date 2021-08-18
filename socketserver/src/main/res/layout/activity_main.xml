@@ -12,25 +12,33 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="BIND"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="131dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sSocket" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_sSocket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:text="Socket Server On"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Color"
         tools:layout_editor_absoluteX="130dp" />
+
+    <Button
+        android:id="@+id/btn_Color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Press Button to change color"
+        app:layout_constraintTop_toBottomOf="@+id/edit_message"
+        tools:layout_editor_absoluteX="130dp" />
+
+    <EditText
+        android:id="@+id/edit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

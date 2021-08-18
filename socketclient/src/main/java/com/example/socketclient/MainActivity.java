@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.button:
+            case R.id.btn_cSocket:
                 Log.d(TAG, "onClick: Thread before");
                 ClientThread thread = new ClientThread();
                 thread.start();
@@ -113,15 +112,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 InputStream is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
-                String data = (String) ois.readObject();
-                String finalData = data;
-                Log.d(TAG, "run: data: " + finalData);
+                String message = (String) ois.readObject();
+
+                Log.d(TAG, "run: message: " + message);
 
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            newLayout(finalData);
+                            newLayout(message);
                             Log.d(TAG, "run: new layout");
 
                         } catch (Exception e){

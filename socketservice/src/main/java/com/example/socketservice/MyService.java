@@ -16,8 +16,22 @@ import java.net.UnknownHostException;
 public class MyService extends Service {
 
     private static final String TAG = "[SOCKET] Service";
+    private String message = "Hi";
 
     public Binder mBinder = new IServiceInterface.Stub() {
+
+        @Override
+        public void setMessage(String text) throws RemoteException {
+            message = text;
+            Log.d(TAG, "setMessage: " + message);
+        }
+
+        @Override
+        public String getMessage() throws RemoteException {
+            Log.d(TAG, "getMessage: " + message);
+            return message;
+        }
+
         @Override
         public void serviceThreadStart() throws RemoteException {
             Log.d(TAG, "serviceThreadStart: ");
@@ -68,7 +82,6 @@ public class MyService extends Service {
                     Log.d(TAG, "run: accept!");
     
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                    String message = "Hello, World!";
                     oos.writeObject(message);
                     oos.flush();
                     Log.d(TAG, "run: send: " + message);
