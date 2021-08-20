@@ -16,14 +16,14 @@ import java.net.UnknownHostException;
 public class MyService extends Service {
 
     private static final String TAG = "[SOCKET] Service";
-    private String message = "Hi";
+    private static String message;
 
     public Binder mBinder = new IServiceInterface.Stub() {
 
         @Override
         public void setMessage(String text) throws RemoteException {
             message = text;
-            Log.d(TAG, "setMessage: " + message);
+            //Log.d(TAG, "setMessage: " + message);
         }
 
         @Override
@@ -80,7 +80,7 @@ public class MyService extends Service {
                 while (true){
                     Socket socket = serverSocket.accept();
                     Log.d(TAG, "run: accept!");
-    
+
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                     oos.writeObject(message);
                     oos.flush();

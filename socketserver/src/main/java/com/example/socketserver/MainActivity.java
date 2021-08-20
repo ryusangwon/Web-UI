@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.socketservice.IServiceInterface;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     IServiceInterface myService;
     boolean isbind =false;
+    EditText eMessage;
 
     final ServiceConnection mConnection = new ServiceConnection() {
         @Override
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        eMessage = (EditText) findViewById(R.id.edit_message);
     }
 
     @Override
@@ -64,10 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     if (isbind == true){
                         Log.d(TAG, "onCreate: Start Service from Server?");
+                        myService.setMessage(eMessage.getText().toString());
                         myService.serviceThreadStart();
-                        myService.setMessage(findViewById(R.id.edit_message).getContext().toString());
-                        Log.d(TAG, "onClick: Set Text");
-
                         Log.d(TAG, "onCreate: Service Start");
                     } else{
                         Log.d(TAG, "onClick: Not Binded");
@@ -77,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d(TAG, "onCreate: Service Error");
                     e.printStackTrace();
                 }
+                break;
+
+            case R.id.btn_Color:
                 break;
         }
     }
