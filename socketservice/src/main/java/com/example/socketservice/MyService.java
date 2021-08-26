@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -11,25 +13,24 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class MyService extends Service {
 
     private static final String TAG = "[SOCKET] Service";
-    private static String message;
+    private static String textMessage;
 
     public Binder mBinder = new IServiceInterface.Stub() {
 
         @Override
         public void setMessage(String text) throws RemoteException {
-            message = text;
+            textMessage = text;
             //Log.d(TAG, "setMessage: " + message);
         }
 
         @Override
         public String getMessage() throws RemoteException {
-            Log.d(TAG, "getMessage: " + message);
-            return message;
+            Log.d(TAG, "getMessage: " + textMessage);
+            return textMessage;
         }
 
         @Override
@@ -67,36 +68,77 @@ public class MyService extends Service {
         Log.d(TAG, "onBind: ");
         return mBinder;
     }
-    
+
     class ServerThread extends Thread{
+        private Boolean loop;
+        ServerSocket serverSocket;
+
+        public ServerThread() {
+            Log.d(TAG, "ServerThread: accept?");
+            int port = 5672;
+            try {
+                serverSocket = new ServerSocket(port);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG, "ServerThread: accept!");
+            loop = true;
+        }
+
         @Override
         public void run() {
-            Log.d(TAG, "run: accept?");
-            int port = 5672;
-            
-            try{
-                ServerSocket serverSocket = new ServerSocket(port);
-                
-                while (true){
+            Looper.prepare();
+            while(loop){
+                try{
                     Socket socket = serverSocket.accept();
                     Log.d(TAG, "run: accept!");
 
-                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                    oos.writeObject(message);
-                    oos.flush();
-                    Log.d(TAG, "run: send: " + message);
-                    socket.close();                    
+                    writeMessageThread writeMessageThread = new writeMessageThread(socket);
+                    writeMessageThread.start();
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                
-            } catch (UnknownHostException e){
-                Log.d(TAG, "run: unknown host exception");
-                e.printStackTrace();
+            }
+            try{
+                if (serverSocket != null){
+                    Log.d(TAG, "run: Server Socket Closed");
+                    serverSocket.close();
+                }
             } catch (IOException e) {
-                Log.d(TAG, "run: IO exception");
-                e.printStackTrace();
-            } catch (Exception e){
                 e.printStackTrace();
             }
+
+            Looper.loop();
         }
     }
+
+
+
+    class writeMessageThread extends Thread{
+        private Socket socket;
+
+        public writeMessageThread(Socket socket){
+            Log.d(TAG, "writeMessageThread: ");
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            //Message message = new Message(); this is for message we will use later
+            ObjectOutputStream oos = null;
+
+            try {
+                oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject(textMessage);
+                oos.flush();
+                Log.d(TAG, "run: send: " + textMessage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 }

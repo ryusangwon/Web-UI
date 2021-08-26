@@ -80,18 +80,9 @@ public class MainActivity extends AppCompatActivity{
                 Looper.prepare();
                 myBindService();
                 Log.d(TAG, "on myBindService: Which Thread: " + Looper.myLooper());
-                Log.d(TAG, "run: "+ isBind);
                 Looper.loop();
             }
         }).start();
-
-        btn_color.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
-
     }
 
     @Override
