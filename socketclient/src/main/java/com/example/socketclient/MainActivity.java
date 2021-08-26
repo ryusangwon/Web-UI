@@ -80,16 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void newEvent(String event){
-        if (event.equals("Button")){
-            Random random = new Random();
-            int red = random.nextInt(255);
-            int green = random.nextInt(255);
-            int blue = random.nextInt(255);
-            newText.setTextColor(Color.rgb(red, green, blue));
-        }
-    }
-
     public class ClientThread extends Thread {
         private static final String TAG = "[SOCKET] Client Thread";
 
