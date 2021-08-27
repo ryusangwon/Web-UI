@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     boolean isBind =false;
     EditText eMessage;
     Button btn_color;
+    String eventName;
 
     Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -83,6 +84,19 @@ public class MainActivity extends AppCompatActivity{
                 Looper.loop();
             }
         }).start();
+
+        btn_color=findViewById(R.id.btn_Color);
+        btn_color.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    eventName = "button";
+                    myService.handleSocketEvent(eventName);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

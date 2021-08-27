@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button newButton;
     TextView newText;
 
+    Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void newLayout(String data){
+        Log.d(TAG, "newLayout: ");
         LinearLayout linear = new LinearLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -82,29 +86,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public class ClientThread extends Thread {
         private static final String TAG = "[SOCKET] Client Thread";
-
         Handler handler = new Handler();
-        int num;
 
         @Override
         public void run() {
+            Looper.prepare();
             String target = "192.168.0.21";
             int port = 5672;
 
             try{
-                Log.d(TAG, "run: make socket object");
                 Socket socket = new Socket();
-                Log.d(TAG, "run: make socket address");
                 SocketAddress socketAddress = new InetSocketAddress(target, port);
                 Log.d(TAG, "run: connect socket");
                 socket.connect(socketAddress, port);
-                Log.d(TAG, "run: make Socket");
+
 
                 InputStream is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
                 String message = (String) ois.readObject();
-
                 Log.d(TAG, "run: message: " + message);
+
+                /*
+                layoutThread layoutThread = new layoutThread(message);
+                layoutThread.start();
+                 */
 
                 handler.post(new Runnable() {
                     @Override
@@ -120,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
+
             } catch (UnknownHostException e){
                 Log.d(TAG, "run: unknown host exception");
                 e.printStackTrace();
@@ -129,7 +135,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } catch (Exception e){
                 Log.d(TAG, "run: Other exception: " + e.getMessage());
             }
+            Looper.loop();
         }
     }
+
+    /*
+    class layoutThread extends Thread{
+        String message;
+        Handler handler = new Handler();
+
+        public layoutThread(String message){
+            this.message = message;
+        }
+
+        @Override
+        public void run() {
+            Looper.prepare();
+            Log.d(TAG, "layoutThread: ");
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Log.d(TAG, "run: make layout");
+                        newLayout(message);
+                        Log.d(TAG, "run: new layout");
+
+                    } catch (Exception e){
+                        Log.d(TAG, "error: " + e);
+                        e.printStackTrace();
+                    }
+                }
+            });
+            Looper.loop();
+        }
+    }
+
+     */
 
 }

@@ -3,21 +3,29 @@ package com.example.socketservice;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.Button;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 public class MyService extends Service {
 
     private static final String TAG = "[SOCKET] Service";
     private static String textMessage;
+    private static String eventNameMessage;
+
+    Handler handler;
 
     public Binder mBinder = new IServiceInterface.Stub() {
 
@@ -39,6 +47,13 @@ public class MyService extends Service {
             ServerThread serverThread = new ServerThread();
             serverThread.start();
         }
+
+        @Override
+        public void handleSocketEvent(String eventName) throws RemoteException {
+            Log.d(TAG, "handleSocketEvent: ");
+            handleEventThread handleEventThread = new handleEventThread(eventName);
+            handleEventThread.start();
+        }
     };
 
 
@@ -46,6 +61,15 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate: ");
+        /*
+        handler = new Handler(){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                String event = msg.obj.toString();
+            }
+        };
+
+         */
     }
 
     @Override
@@ -93,9 +117,22 @@ public class MyService extends Service {
                     Socket socket = serverSocket.accept();
                     Log.d(TAG, "run: accept!");
 
+                    ObjectOutputStream oos = null;
+
+                    /*
+                    try {
+                        oos = new ObjectOutputStream(socket.getOutputStream());
+                        oos.writeObject(textMessage);
+                        oos.flush();
+                        Log.d(TAG, "run: send: " + textMessage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                     */
+
                     writeMessageThread writeMessageThread = new writeMessageThread(socket);
                     writeMessageThread.start();
-
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -114,8 +151,6 @@ public class MyService extends Service {
         }
     }
 
-
-
     class writeMessageThread extends Thread{
         private Socket socket;
 
@@ -126,19 +161,64 @@ public class MyService extends Service {
 
         @Override
         public void run() {
+            Looper.prepare();
             //Message message = new Message(); this is for message we will use later
-            ObjectOutputStream oos = null;
 
+            ObjectOutputStream oos = null;
             try {
                 oos = new ObjectOutputStream(socket.getOutputStream());
-                oos.writeObject(textMessage);
+                oos.writeObject(eventNameMessage);
                 oos.flush();
-                Log.d(TAG, "run: send: " + textMessage);
+                Log.d(TAG, "run: send: " + eventNameMessage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            Looper.loop();
         }
     }
+
+    class handleEventThread extends Thread{
+        public handleEventThread(String eventName){
+            Log.d(TAG, "handleEventThread: ");
+            eventNameMessage = eventName;
+        }
+    }
+
+    /*
+    class handleEventThread extends Thread{
+
+        public handleEventThread(String eventName){
+            eventNameMessage = eventName;
+        }
+
+        @Override
+        public void run() {
+            Looper.prepare();
+
+            Message message = new Message();
+
+            switch (eventNameMessage){
+                case "Button":
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Message message = Message.obtain(handler, new Runnable() {
+                                @Override
+                                public void run() {
+
+                                }
+                            });
+                        }
+                    }).start();
+            }
+
+            handler.sendMessage(message);
+
+            Looper.loop();
+        }
+    }
+
+     */
 
 }

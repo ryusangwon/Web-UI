@@ -8,4 +8,5 @@ interface IServiceInterface {
     void setMessage(String text);
     String getMessage();
     void serviceThreadStart();
+    void handleSocketEvent(String eventName);
 }
