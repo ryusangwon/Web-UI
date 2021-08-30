@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: change Color by Client");
                 Random random = new Random();
                 int red = random.nextInt(255);
                 int green = random.nextInt(255);
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public class ClientThread extends Thread {
         private static final String TAG = "[SOCKET] Client Thread";
         Handler handler = new Handler();
+        private Boolean loop;
 
         @Override
         public void run() {
@@ -99,15 +101,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 SocketAddress socketAddress = new InetSocketAddress(target, port);
                 Log.d(TAG, "run: connect socket");
                 socket.connect(socketAddress, port);
-
+                loop=true;
 
                 InputStream is = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
-                String message = (String) ois.readObject();
-                Log.d(TAG, "run: message: " + message);
+                String TestMessage = (String) ois.readObject();
+                Log.d(TAG, "run: TestMessage: " + TestMessage);
 
                 /*
-                layoutThread layoutThread = new layoutThread(message);
+                layoutThread layoutThread = new layoutThread(TestMessage);
                 layoutThread.start();
                  */
 
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         try {
-                            newLayout(message);
+                            newLayout(TestMessage);
                             Log.d(TAG, "run: new layout");
 
                         } catch (Exception e){
@@ -124,6 +126,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+
+
+                while (loop){
+                    try{
+                        is = socket.getInputStream();
+                        ois = new ObjectInputStream(is);
+                        String eventName = (String) ois.readObject();
+                        Log.d(TAG, "run: eventName: " + eventName);
+
+                        switch (eventName){
+                            case "Button":
+                                newButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Log.d(TAG, "onClick: change Color by Server");
+                                        Random random = new Random();
+                                        int red = random.nextInt(255);
+                                        int green = random.nextInt(255);
+                                        int blue = random.nextInt(255);
+                                        newText.setTextColor(Color.rgb(red, green, blue));
+                                    }
+                                });
+                                break;
+                        }
+
+
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
 
 
             } catch (UnknownHostException e){

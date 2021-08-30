@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity{
                 try {
                     eventName = "button";
                     myService.handleSocketEvent(eventName);
+                    myService.setMessage(eMessage.getText().toString());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

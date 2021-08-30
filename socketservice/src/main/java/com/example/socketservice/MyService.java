@@ -25,7 +25,15 @@ public class MyService extends Service {
     private static String textMessage;
     private static String eventNameMessage;
 
-    Handler handler;
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            eventNameMessage = String.valueOf(msg.what);
+            return true;
+        }
+    });
+
+    Boolean eventTurn=false;
 
     public Binder mBinder = new IServiceInterface.Stub() {
 
@@ -112,14 +120,13 @@ public class MyService extends Service {
         @Override
         public void run() {
             Looper.prepare();
-            while(loop){
+
+            if (eventTurn != true){
                 try{
                     Socket socket = serverSocket.accept();
                     Log.d(TAG, "run: accept!");
 
                     ObjectOutputStream oos = null;
-
-                    /*
                     try {
                         oos = new ObjectOutputStream(socket.getOutputStream());
                         oos.writeObject(textMessage);
@@ -129,7 +136,17 @@ public class MyService extends Service {
                         e.printStackTrace();
                     }
 
-                     */
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            while(loop){
+                try{
+                    Socket socket = serverSocket.accept();
+                    Log.d(TAG, "run: accept!");
+
+                    ObjectOutputStream oos = null;
 
                     writeMessageThread writeMessageThread = new writeMessageThread(socket);
                     writeMessageThread.start();
@@ -169,7 +186,7 @@ public class MyService extends Service {
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject(eventNameMessage);
                 oos.flush();
-                Log.d(TAG, "run: send: " + eventNameMessage);
+                Log.d(TAG, "writeMessageThread: " + eventNameMessage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,7 +198,15 @@ public class MyService extends Service {
     class handleEventThread extends Thread{
         public handleEventThread(String eventName){
             Log.d(TAG, "handleEventThread: ");
-            eventNameMessage = eventName;
+
+            Message message = Message.obtain(handler, new Runnable() {
+                @Override
+                public void run() {
+                    eventNameMessage = eventName;
+                    eventTurn = true;
+                }
+            });
+            handler.sendMessage(message);
         }
     }
 
