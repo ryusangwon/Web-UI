@@ -82,7 +82,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 newText.setTextColor(Color.rgb(red, green, blue));
             }
         });
+    }
 
+    public void eventSocket(String eventName){
+        switch (eventName){
+            case "ButtonClick":
+                newButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d(TAG, "onClick: change Color by Server");
+                        Random random = new Random();
+                        int red = random.nextInt(255);
+                        int green = random.nextInt(255);
+                        int blue = random.nextInt(255);
+                        newText.setTextColor(Color.rgb(red, green, blue));
+                    }
+                });
+                break;
+        }
     }
 
     public class ClientThread extends Thread {
@@ -126,36 +143,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+                socket.close();
 
+                try{
+                    socket.connect(socketAddress, port);
+                    Log.d(TAG, "run: 11");
+                    is = socket.getInputStream();
+                    Log.d(TAG, "run: 22");
+                    ois = new ObjectInputStream(is);
+                    Log.d(TAG, "run: 33");
+                    if (is != null){
+                        while (loop){
+                            try{
+                                Log.d(TAG, "run: 44");
+                                String eventName = (String) ois.readObject();
+                                Log.d(TAG, "run: eventName: " + eventName);
+                                eventSocket(eventName);
 
-                while (loop){
-                    try{
-                        is = socket.getInputStream();
-                        ois = new ObjectInputStream(is);
-                        String eventName = (String) ois.readObject();
-                        Log.d(TAG, "run: eventName: " + eventName);
-
-                        switch (eventName){
-                            case "Button":
-                                newButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Log.d(TAG, "onClick: change Color by Server");
-                                        Random random = new Random();
-                                        int red = random.nextInt(255);
-                                        int green = random.nextInt(255);
-                                        int blue = random.nextInt(255);
-                                        newText.setTextColor(Color.rgb(red, green, blue));
-                                    }
-                                });
-                                break;
+                            } catch (Exception e){
+                                e.printStackTrace();
+                            }
                         }
-
-
-                    } catch (Exception e){
-                        e.printStackTrace();
                     }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
+
 
 
             } catch (UnknownHostException e){

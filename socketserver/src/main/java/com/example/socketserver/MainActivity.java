@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 try {
-                    eventName = "button";
+                    eventName = "buttonClick";
                     myService.handleSocketEvent(eventName);
                     myService.setMessage(eMessage.getText().toString());
                 } catch (RemoteException e) {

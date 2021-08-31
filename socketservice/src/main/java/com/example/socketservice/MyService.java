@@ -25,6 +25,9 @@ public class MyService extends Service {
     private static String textMessage;
     private static String eventNameMessage;
 
+    ServerThread serverThread = new ServerThread();
+
+    /*
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
@@ -32,6 +35,9 @@ public class MyService extends Service {
             return true;
         }
     });
+     */
+
+    Handler handler = new Handler();
 
     Boolean eventTurn=false;
 
@@ -52,15 +58,15 @@ public class MyService extends Service {
         @Override
         public void serviceThreadStart() throws RemoteException {
             Log.d(TAG, "serviceThreadStart: ");
-            ServerThread serverThread = new ServerThread();
             serverThread.start();
         }
 
         @Override
         public void handleSocketEvent(String eventName) throws RemoteException {
-            Log.d(TAG, "handleSocketEvent: ");
-            handleEventThread handleEventThread = new handleEventThread(eventName);
-            handleEventThread.start();
+            eventNameMessage = eventName;
+            Log.d(TAG, "handleSocketEvent: eventName: " + eventNameMessage);
+            //handleEventThread handleEventThread = new handleEventThread(eventName);
+            //handleEventThread.start();
         }
     };
 
@@ -76,7 +82,6 @@ public class MyService extends Service {
                 String event = msg.obj.toString();
             }
         };
-
          */
     }
 
@@ -132,6 +137,7 @@ public class MyService extends Service {
                         oos.writeObject(textMessage);
                         oos.flush();
                         Log.d(TAG, "run: send: " + textMessage);
+                        socket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -140,16 +146,19 @@ public class MyService extends Service {
                     e.printStackTrace();
                 }
             }
+            Log.d(TAG, "run: loop: " + loop);
 
             while(loop){
                 try{
+                    Log.d(TAG, "run: socket connect please");
                     Socket socket = serverSocket.accept();
-                    Log.d(TAG, "run: accept!");
+                    Log.d(TAG, "run: Write Message Thread " + Looper.myLooper());
 
-                    ObjectOutputStream oos = null;
-
+                    /*
                     writeMessageThread writeMessageThread = new writeMessageThread(socket);
                     writeMessageThread.start();
+                    */
+                    writeMessageMethod(socket);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -167,7 +176,20 @@ public class MyService extends Service {
             Looper.loop();
         }
     }
+    public void writeMessageMethod(Socket socket){
+        try {
+            eventTurn=false;
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(eventNameMessage);
+            oos.flush();
+            Log.d(TAG, "writeMessageMethod: " + eventNameMessage);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
     class writeMessageThread extends Thread{
         private Socket socket;
 
@@ -195,20 +217,37 @@ public class MyService extends Service {
         }
     }
 
+     */
+
+
+    /*
     class handleEventThread extends Thread{
         public handleEventThread(String eventName){
-            Log.d(TAG, "handleEventThread: ");
+            eventNameMessage = eventName;
+        }
 
-            Message message = Message.obtain(handler, new Runnable() {
-                @Override
-                public void run() {
-                    eventNameMessage = eventName;
-                    eventTurn = true;
-                }
-            });
-            handler.sendMessage(message);
+        @Override
+        public void run() {
+            Looper.prepare();
+            //Message message = new Message(); this is for message we will use later
+
+            ObjectOutputStream oos = null;
+            try {
+                oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject(eventNameMessage);
+                oos.flush();
+                Log.d(TAG, "writeMessageThread: " + eventNameMessage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Looper.loop();
         }
     }
+
+     */
+
+
 
     /*
     class handleEventThread extends Thread{
